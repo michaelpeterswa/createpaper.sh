@@ -3,4 +3,4 @@ Automagically create a Minecraft server on the latest PaperMC jar for a given ve
 
 https://papermc.io
 
-``` curl -sSL https://raw.githubusercontent.com/michaelpeterswa/createpaper.sh/main/createpaper.sh | sh```
+``` curl -sSL https://raw.githubusercontent.com/michaelpeterswa/createpaper.sh/main/createpaper.sh | sh -s MyServer 1.16.5```
