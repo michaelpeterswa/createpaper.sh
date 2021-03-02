@@ -33,8 +33,16 @@ JAR_URL="$BUILD_URL/downloads/$JAR"
 
 download_and_install () {
 	curl -sSL $JAR_URL -o $JAR
-	echo "eula=true" > eula.txt
-	java -Xms4G -Xmx4G -jar $JAR
+	RECV_JAR_SHA=$(sha256sum $JAR | cut -d " " -f 1)
+
+	if [ "$RECV_JAR_SHA" = "$JAR_SHA" ]; then
+		echo  "Jarfile verified."
+		echo "eula=true" > eula.txt
+		java -Xms4G -Xmx4G -jar $JAR
+	else
+		echo "Jarfile could not be verified. Exiting..."
+		exit 1
+	fi
 }
 
 if [ ! -d "$SERVER_NAME" ]; then
