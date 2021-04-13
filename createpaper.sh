@@ -11,6 +11,7 @@ fi
 SERVER_NAME=$1
 JAR_VERSION=$2
 PAPERMC_URL="https://papermc.io/api/v2/projects/paper/versions/$2"
+START_SCRIPT="https://raw.githubusercontent.com/michaelpeterswa/createpaper.sh/main/start.sh"
 
 echo "Starting PaperMC server $SERVER_NAME, version $JAR_VERSION"
 
@@ -36,8 +37,11 @@ download_and_install () {
 	RECV_JAR_SHA=$(sha256sum $JAR | cut -d " " -f 1)
 
 	if [ "$RECV_JAR_SHA" = "$JAR_SHA" ]; then
-		echo  "Jarfile verified."
+		echo "Jarfile verified."
 		echo "eula=true" > eula.txt
+		echo "Installing start script..."
+		curl -sSL $START_SCRIPT
+		echo "Starting Server."
 		java -Xms4G -Xmx4G -jar $JAR
 	else
 		echo "Jarfile could not be verified. Exiting..."
