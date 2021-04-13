@@ -40,7 +40,7 @@ download_and_install () {
 		echo "Jarfile verified."
 		echo "eula=true" > eula.txt
 		echo "Installing start script..."
-		curl -sSL $START_SCRIPT -o "start.sh"
+		curl -sSL $START_SCRIPT > start.sh
 		echo "Starting Server."
 		java -Xms4G -Xmx4G -jar $JAR
 	else
