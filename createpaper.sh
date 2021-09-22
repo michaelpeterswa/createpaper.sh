@@ -17,7 +17,7 @@ echo "Starting PaperMC server $SERVER_NAME, version $JAR_VERSION"
 
 if ! command -v java &> /dev/null
 then
-	sudo apt-get install -y openjdk-11-jdk-headless
+	sudo apt-get install -y openjdk-16-jdk-headless
 fi
 
 if ! command -v jq &> /dev/null
